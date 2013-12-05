@@ -5,7 +5,7 @@
   
   "version": "0.2.1",
   "author": "Phil Corcoran",
-  "main": "./cache-ex.js",
+  "main": "./index.js",
   "homepage": "https://github.com/PhilCorcoran/cache-ex",
   "repository": {
           "type": "git",
