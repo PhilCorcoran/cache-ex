@@ -31,6 +31,9 @@ secret,timeToLive
 
 Relies on  `expressjs`.
 The following code instructs `express` to use the `get` method of `cache-ex` on all requests.
+```js
+  app.use(cacheEx.get);
+```
 `cache-ex` does not cache POST requests only GET.
 
 ##Manage the cache
