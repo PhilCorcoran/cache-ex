@@ -67,6 +67,55 @@ HTTP POST to '/cache/flush' with the following json to match the `secret` config
 {"secret":"mySecret"}
 ```
 
+#Test
+Install the required node modules and run `test.js`
+```bash
+npm install
+node test.js
+```
+
+Browse to the following urls
+
+`http://localhost:3333/price?product=22&catalog=music`
+
+`http://localhost:3333/price?catalog=music&product=22`
+
+Notice that the order of query parameters does not matter
+
+`http://localhost:3333/price?catalog=music&product=33`
+Gives a new counter value. refresh gives the same value
+
+`http://localhost:3333/price?catalog=music&product=33&nocache`
+
+Adding the `nocache` parameter retrives a new value every time. This enables you to refresh the value of a single key
+
+Check out the admin urls
+`http://localhost:3333/cache/keys`
+```json[
+"/price|catalog:music|product:22|"
+"/price|catalog:music|product:33|"
+]
+```
+`http://localhost:3333/cache/stats`
+```json
+{
+"hits": "2",
+"misses": "3",
+"keys": "2",
+"ksize": "64",
+"vsize": "160"
+}
+```
+Flush the cache
+POST to `http://localhost:3333/cache/flush` with `{"secret":"mySecret"}`
+
+Returns a HTTP Status 200 with the following json
+
+```json
+{
+"flushed": "OK"
+}	
+```
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
