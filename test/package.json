@@ -1,0 +1,14 @@
+{
+	"name": "Test",
+	"description": "Tests for cache-ex",
+
+	"version": "0.0.1",
+
+	"dependencies": {
+		"express":"3.4.x",
+		"node-cache":"0.4.x"
+	},
+	"engines": {
+		"node": "~0.10"
+	}
+}
