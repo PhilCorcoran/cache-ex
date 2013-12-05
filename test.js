@@ -2,7 +2,7 @@
 var fs = require('fs'),
 http = require('http'),
 express = require('express'),
-cacheEx=require('./cache-ex'),
+cacheEx=require('./index.js'),
 mock_db=require('./test/mock_db_driver');
 
 var settings = require('./test/settings.json');
