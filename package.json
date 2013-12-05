@@ -3,7 +3,7 @@
 
   "description": "Caches all responses to GET requests in memory using node-cache. Provides admin urls to manage the cache",
   
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Phil Corcoran",
   "main": "./index.js",
   "homepage": "https://github.com/PhilCorcoran/cache-ex",
