@@ -2,14 +2,19 @@
   "name": "cache-ex",
 
   "description": "Caches all responses to GET requests in memory using node-cache. Provides admin urls to manage the cache",
-
+  
   "version": "0.2.1",
-
+  "author": "Phil Corcoran",
+  "main": "./cache-ex.js",
+  "homepage": "https://github.com/PhilCorcoran/cache-ex",
+  "repository": {
+          "type": "git",
+          "url": "git://github.com/PhilCorcoran/cache-ex.git"
+  },
   "dependencies": {
     "express": "3.4.x",
     "node-cache": "0.4.x"
   },
-
   "engines": {
     "node": "~0.10"
   }
