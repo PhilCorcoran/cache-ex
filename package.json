@@ -1,0 +1,16 @@
+{
+  "name": "cache-ex",
+
+  "description": "Caches all responses to GET requests in memory using node-cache. Provides admin urls to manage the cache",
+
+  "version": "0.2.1",
+
+  "dependencies": {
+    "express": "3.4.x",
+    "node-cache": "0.4.x"
+  },
+
+  "engines": {
+    "node": "~0.10"
+  }
+}
