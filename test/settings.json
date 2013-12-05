@@ -1,0 +1,11 @@
+{ 
+	"database":{
+	"hostname": "any",
+	"user": "joe",
+	"password": "blogs",
+	"database": "mock"
+	},
+	"port":"3333",
+	"secret":"mySecret",
+	"timeToLive":36000
+}
