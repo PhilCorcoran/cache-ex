@@ -13,7 +13,7 @@ Provides admin urls to manage the cache
 
 # Examples:
 
-## Initialize (INIT):
+## Initialization
 
 ```js
 var cacheEx=require('cache-ex')({secret:'dont tell a soul'});
