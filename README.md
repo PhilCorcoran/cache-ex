@@ -122,7 +122,7 @@ Returns a HTTP Status 200 with the following json
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
-|v0.3.0|2014-05-13|Added serve method. Multiple caches can be required and used in the same service|
+|v0.3.1|2014-05-13|Added serve method. Multiple caches can be required and used in the same service|
 |v0.2.1|2013-12-05|Added sorting of query parameters|
 
 # License 
