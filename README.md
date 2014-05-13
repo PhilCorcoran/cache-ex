@@ -10,15 +10,13 @@ Provides admin urls to manage the cache
   npm install cache-ex
 ```
 
-Or just require the `cache-ex.js` file to get the superclass
 
 # Examples:
 
 ## Initialize (INIT):
 
 ```js
-var cacheEx=require('cache-ex');
-cacheEx.init("mySecretWord",3600);
+var cacheEx=require('cache-ex')({secret:'dont tell a soul'});
 ```
 
 ### Options
@@ -27,12 +25,17 @@ secret,timeToLive
 - `secret`: A secret word to protect flusing of the cache
 
 
-## Retrieve data:
+## Retrieve and Serve cached data:
 
 Relies on  `expressjs`.
-The following code instructs `express` to use the `get` method of `cache-ex` on all requests.
+The following code instructs `express` to use the `serve` method of `cache-ex` on all requests. Subsequent handlers are only called if the object has not been served from the cache.
 ```js
-  app.use(cacheEx.get);
+app.use(cacheEx.serve());
+
+app.get('/any',function(req,res){
+	cacheEx.put({object:'Cached Object',req:req.query},req);
+	res.send({status:'Not from cache',req:req.query});
+});
 ```
 `cache-ex` does not cache POST requests only GET.
 
@@ -40,8 +43,7 @@ The following code instructs `express` to use the `get` method of `cache-ex` on 
 The admin urls for managing the cache are available after the `/cache` root in this example.
 
 ```js
-  app.use('/cache',cacheEx.admin);
-  app.use(cacheEx.get);
+  app.use('/cache',cacheEx.admin());
 ```
 
 ###Cache Keys :
@@ -65,13 +67,13 @@ HTTP get to `/cache/stats`
 Includes the number of hits and misses
 
 ###Flush the cache
-HTTP POST to '/cache/flush' with the following json to match the `secret` configured in `init`
+HTTP POST to '/cache/flush' with the following json to match the `secret` configured during initialization.
 ```json 
 {"secret":"mySecret"}
 ```
 
 #Test
-Install the required node modules and run `test.js`
+Install the required node modules and run `test/app.js`
 ```bash
 npm install
 node test.js
@@ -79,27 +81,25 @@ node test.js
 
 Browse to the following urls
 
-`http://localhost:3333/price?product=22&catalog=music`
+`http://localhost:8080/any?product=22&catalog=music`
 
-`http://localhost:3333/price?catalog=music&product=22`
+`http://localhost:8080/any?catalog=music&product=22`
 
 Notice that the order of query parameters does not matter
 
-`http://localhost:3333/price?catalog=music&product=33`
-Gives a new counter value. refresh gives the same value
 
-`http://localhost:3333/price?catalog=music&product=33&nocache`
+`http://localhost:8080/any?catalog=music&product=33&nocache`
 
 Adding the `nocache` parameter retrives a new value every time. This enables you to refresh the value of a single key
 
 Check out the admin urls
-`http://localhost:3333/cache/keys`
+`http://localhost:8080/cache/keys`
 ```json[
-"/price|catalog:music|product:22|"
-"/price|catalog:music|product:33|"
+"/any|catalog:music|product:22|"
+"/any|catalog:music|product:33|"
 ]
 ```
-`http://localhost:3333/cache/stats`
+`http://localhost:8080/cache/stats`
 ```json
 {
 "hits": "2",
@@ -110,7 +110,7 @@ Check out the admin urls
 }
 ```
 Flush the cache
-POST to `http://localhost:3333/cache/flush` with `{"secret":"mySecret"}`
+POST to `http://localhost:8080/cache/flush` with `{"secret":"mySecret"}`
 
 Returns a HTTP Status 200 with the following json
 
@@ -122,6 +122,7 @@ Returns a HTTP Status 200 with the following json
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|v0.3.0|2014-05-13|Added serve method. Multiple caches can be required and used in the same service|
 |v0.2.1|2013-12-05|Added sorting of query parameters|
 
 # License 
