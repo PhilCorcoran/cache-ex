@@ -122,6 +122,7 @@ Returns a HTTP Status 200 with the following json
 ## Release History
 |Version|Date|Description|
 |:--:|:--:|:--|
+|v0.3.2|2014-06-17|Bug fix|
 |v0.3.2|2014-06-17|Simple HTML form to flush the cache|
 |v0.3.1|2014-05-13|Added serve method. Multiple caches can be required and used in the same service|
 |v0.2.1|2013-12-05|Added sorting of query parameters|
