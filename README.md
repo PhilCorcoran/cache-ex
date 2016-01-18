@@ -23,7 +23,7 @@ var cacheEx=require('cache-ex')({secret:'dont tell a soul'});
 secret,timeToLive
 - `timeToLive`: the standard ttl as number in seconds for every generated cache element. Default = 0 = unlimited
 - `secret`: A secret word to protect flusing of the cache
-
+= `cacheControlMaxAge`: HTTP Cache-Control header will be sent with this max-age if set and > 0 when serving content from the cache.
 
 ## Retrieve and Serve cached data:
 
@@ -36,6 +36,13 @@ app.get('/any',function(req,res){
 	cacheEx.put({object:'Cached Object',req:req.query},req);
 	res.send({status:'Not from cache',req:req.query});
 });
+
+Or add and send in one fn call. This ensures any cache control headers configured are sent the same from first and subsequent calls.
+
+app.get('/any',function(req,res){
+	cacheEx.putAndServe({object:'Cached Object',req:req.query},req, res);
+});
+
 ```
 `cache-ex` does not cache POST requests only GET.
 
