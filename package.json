@@ -1,6 +1,6 @@
 {
   "name": "cache-ex",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Cache-ex",
   "keywords": [
     "cache",
@@ -26,7 +26,6 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "express": "3.4.x",
     "node-cache": "0.4.x"
   },
   "devDependencies": {},
